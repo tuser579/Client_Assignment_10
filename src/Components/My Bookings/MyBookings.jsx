@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext/AuthContext";
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 const MyBookings = () => {
     const [bookings, setBookings] = useState([]);
@@ -9,12 +10,20 @@ const MyBookings = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:2005/myBookings?email=${user.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setBookings(data);
-            })
+       axios.get(`http://localhost:2005/myBookings?email=${user.email}`)
+       .then(data => {
+        //   console.log(data);
+        setBookings(data.data);
+       })
     }, [user.email]);
+
+    // useEffect(() => {
+    //     fetch(`http://localhost:2005/myBookings?email=${user.email}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setBookings(data);
+    //         })
+    // }, [user.email]);
 
     const handleDelete = (id, carId) => {
         Swal.fire({

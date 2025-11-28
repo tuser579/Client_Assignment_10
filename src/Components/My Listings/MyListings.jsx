@@ -11,13 +11,28 @@ export default function MyListings() {
     const navigate = useNavigate();
 
     // Fetch cars added by the logged-in provider
-    useEffect(() => {
-        fetch(`http://localhost:2005/myCars?email=${user.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setCars(data);
+    // useEffect(() => {
+    //     fetch(`http://localhost:2005/myCars?email=${user.email}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setCars(data);
+    //         })
+    // }, [user.email]);
+
+     useEffect(() => {
+        if (user?.email) {
+            fetch(`http://localhost:2005/myCars?email=${user.email}`, {
+                headers: {
+                    authorization: `Bearer ${user.accessToken}`
+                }
             })
-    }, [user.email]);
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    setCars(data)
+                })
+        }
+    }, [user])
 
     const handleDelete = (id) => {
         //  Block deletion if car is unavailable

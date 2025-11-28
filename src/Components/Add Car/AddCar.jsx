@@ -2,6 +2,7 @@ import React, { use, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../contexts/AuthContext/AuthContext";
+import axios from "axios";
 
 
 const AddCar = () => {
@@ -27,14 +28,15 @@ const AddCar = () => {
         e.preventDefault();
 
         // send data to the server
-        fetch("http://localhost:2005/cars", {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(carData)
-        })
-            .then(res => res.json())
+        // fetch("http://localhost:2005/cars", {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(carData)
+        // })
+        //     .then(res => res.json())
+        axios.post("http://localhost:2005/cars", carData)
             .then(data => {
                 console.log("after post", data);
 
