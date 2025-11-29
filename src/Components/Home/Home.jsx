@@ -6,7 +6,7 @@ import RentSection from '../RentSection/RentSection';
 import TopRatedCars from '../TopRatedCars/TopRatedCars';
 import CustomerTestimonials from '../CustomerTestimonials/CustomerTestimonials';
 
-const topRatedCars = fetch('http://localhost:2005/topRatedCars').then(res => res.json());
+const topRatedCars = fetch('https://server-api-assign10.vercel.app/topRatedCars').then(res => res.json());
 
 const Home = () => {
     const cars = useLoaderData();

@@ -14,7 +14,7 @@ const CarCard = ({ cars }) => {
     const { user } = use(AuthContext);
 
     useEffect(() => {
-            fetch(`http://localhost:2005/cars`)
+            fetch(`https://server-api-assign10.vercel.app/cars`)
                 .then(res => res.json())
                 .then(data => {
                     setAllCars(data);

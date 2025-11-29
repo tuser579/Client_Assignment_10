@@ -131,7 +131,7 @@ const CarDetails = () => {
                     };
 
                     // status changed
-                    // fetch(`http://localhost:2005/carsBooking/${car._id}`, {
+                    // fetch(`https://server-api-assign10.vercel.app/carsBooking/${car._id}`, {
                     //     method: 'PATCH',
                     //     headers: {
                     //         'Content-Type': 'application/json',
@@ -148,7 +148,7 @@ const CarDetails = () => {
                         });
 
                     // POST to backend
-                    // fetch("http://localhost:2005/myBookings", {
+                    // fetch("https://server-api-assign10.vercel.app/myBookings", {
                     //     method: "POST",
                     //     headers: { "Content-Type": "application/json" },
                     //     body: JSON.stringify(bookingInfo),
@@ -156,7 +156,7 @@ const CarDetails = () => {
                     //     .then(res => res.json())
                     axiosSecure.post(`/myBookings`, bookingInfo)
                         .then(data => {
-                            console.log("Booking saved:", data.data);
+                            // console.log("Booking saved:", data.data);
 
                             Swal.fire({
                                 title: 'Booking Confirmed!',
@@ -180,7 +180,7 @@ const CarDetails = () => {
                             setShowModal(false);
                         })
                         .catch(err => {
-                            console.error("Error saving booking:", err);
+                            // console.error("Error saving booking:", err);
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Save Failed',
@@ -200,164 +200,6 @@ const CarDetails = () => {
     const totalDays = totalPrice / car.price;
 
     return (
-        // <div className='w-full sm:w-[70%] mx-auto p-5 bg-white shadow-lg rounded-lg'>
-        //     <div>
-        //         {/* car image */}
-        //         <img
-        //             src={car.image}
-        //             alt={car.name}
-        //             className="w-120 mx-auto object-cover rounded-md mb-6"
-        //         />
-
-        //         {/* car info */}
-        //         <h1 className="text-3xl font-bold mb-4">{car.name}</h1>
-        //         <p className="text-gray-700 mb-4"><span className="font-semibold">Description:</span> {car.description}</p>
-
-        //         <div className="grid grid-cols-2 gap-4 mb-6">
-        //             <p><span className="font-semibold">Category:</span> {car.category}</p>
-        //             <p><span className="font-semibold">Rent Price:</span> ${car.price}/day</p>
-        //             <p><span className="font-semibold">Location:</span> {car.location}</p>
-        //             <p><span className="font-semibold">Status:</span> {car.status}</p>
-        //         </div>
-
-        //         {/* provider info */}
-        //         <div className="bg-gray-100 rounded-md mb-6">
-        //             <h2 className="text-xl font-semibold mb-2">Provider Information :</h2>
-        //             <p><span className="font-semibold">Name:</span> {car.providerName}</p>
-        //             <p><span className="font-semibold">Email:</span> {car.email}</p>
-        //         </div>
-
-        //         {/* book now button */}
-        //         <button
-        //             onClick={modal}
-        //             className="btn btn-primary w-full bg-red-500 text-white py-3 rounded-lg hover:bg-red-600 border-none text-lg font-semibold"
-        //         >
-        //             Book Now
-        //         </button>
-        //     </div>
-
-        //     {/* DaisyUI Modal */}
-        //     <dialog className={`modal ${showModal ? 'modal-open' : ''}`}>
-        //         <div className="modal-box">
-        //             <div className="flex justify-between items-center mb-6">
-        //                 <h3 className="text-2xl font-bold">Book {car.name}</h3>
-        //                 <button
-        //                     onClick={() => setShowModal(false)}
-        //                     className="btn btn-sm btn-circle btn-ghost"
-        //                 >
-        //                     ✕
-        //                 </button>
-        //             </div>
-
-        //             <form onSubmit={handleBooking} className="space-y-6">
-        //                 {/* Customer Information */}
-        //                 <div className="space-y-4">
-        //                     <h4 className="font-semibold text-lg border-b pb-2">Your Information</h4>
-
-        //                     <div className="form-control">
-        //                         <label className="label">
-        //                             <span className="label-text font-semibold">Full Name *</span>
-        //                         </label>
-        //                         <input
-        //                             type="text"
-        //                             name="customerName"
-        //                             defaultValue={user.displayName}
-        //                             onChange={handleInputChange}
-        //                             required
-        //                             className="input input-bordered w-full focus:input-primary"
-        //                             placeholder="Enter your full name"
-        //                         />
-        //                     </div>
-
-        //                     <div className="form-control">
-        //                         <label className="label">
-        //                             <span className="label-text font-semibold">Email *</span>
-        //                         </label>
-        //                         <input
-        //                             type="email"
-        //                             name="customerEmail"
-        //                             defaultValue={user.email}
-        //                             onChange={handleInputChange}
-        //                             required
-        //                             className="input input-bordered w-full focus:input-primary"
-        //                             placeholder="Enter your email"
-        //                         />
-        //                     </div>
-
-        //                 </div>
-
-        //                 {/* Booking Dates */}
-        //                 <div className="space-y-4">
-        //                     <h4 className="font-semibold text-lg border-b pb-2">Booking Dates</h4>
-
-        //                     <div className="form-control">
-        //                         <label className="label">
-        //                             <span className="label-text font-semibold">Pickup Date *</span>
-        //                         </label>
-        //                         <input
-        //                             type="date"
-        //                             name="pickupDate"
-        //                             value={bookingData.pickupDate}
-        //                             onChange={handleInputChange}
-        //                             min={new Date().toISOString().split('T')[0]}
-        //                             required
-        //                             className="input input-bordered w-full focus:input-primary"
-        //                         />
-        //                     </div>
-
-        //                     <div className="form-control">
-        //                         <label className="label">
-        //                             <span className="label-text font-semibold">Return Date *</span>
-        //                         </label>
-        //                         <input
-        //                             type="date"
-        //                             name="returnDate"
-        //                             value={bookingData.returnDate}
-        //                             onChange={handleInputChange}
-        //                             min={minReturnDate}
-        //                             required
-        //                             className="input input-bordered w-full focus:input-primary"
-        //                         />
-        //                     </div>
-        //                 </div>
-
-        //                 {/* Price Summary */}
-        //                 {totalPrice > 0 && (
-        //                     <div className="alert alert-success bg-green-50 border-green-200">
-        //                         <div>
-        //                             <h3 className="font-bold text-green-800">Booking Summary</h3>
-        //                             <div className="text-green-700 mt-2">
-        //                                 <p>Total days: {totalDays}</p>
-        //                                 <p className="font-semibold text-lg">Total price: ${totalPrice}</p>
-        //                             </div>
-        //                         </div>
-        //                     </div>
-        //                 )}
-
-        //                 <div className="modal-action">
-        //                     <button
-        //                         type="button"
-        //                         onClick={() => setShowModal(false)}
-        //                         className="btn btn-ghost"
-        //                     >
-        //                         Cancel
-        //                     </button>
-        //                     <button
-        //                         type="submit"
-        //                         className="btn btn-primary bg-red-500 text-white border-none hover:bg-red-600"
-        //                     >
-        //                         Confirm Booking
-        //                     </button>
-        //                 </div>
-        //             </form>
-        //         </div>
-
-        //         {/* Modal backdrop */}
-        //         <form method="dialog" className="modal-backdrop">
-        //             <button onClick={() => setShowModal(false)}>close</button>
-        //         </form>
-        //     </dialog>
-        // </div>
         <div className="min-h-screen bg-cover bg-center bg-fixed bg-no-repeat" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")' }}>
             <div className="min-h-screen  sm:py-8">
                 <div className="w-full max-w-6xl mx-auto sm:p-4">

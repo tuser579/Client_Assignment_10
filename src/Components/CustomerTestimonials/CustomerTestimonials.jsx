@@ -20,24 +20,6 @@ const CustomerTestimonials = () => {
             avatar: "/images/avatar2.jpg",
             carRented: "Toyota Camry"
         },
-        // {
-        //     id: 3,
-        //     name: "Emily Rodriguez",
-        //     role: "Adventure Seeker",
-        //     rating: 4,
-        //     comment: "Perfect experience from start to finish. The Tesla Model 3 was incredible - eco-friendly and high-tech. The pickup and drop-off process was super convenient.",
-        //     avatar: "/images/avatar3.jpg",
-        //     carRented: "Tesla Model 3"
-        // },
-        // {
-        //     id: 4,
-        //     name: "David Wilson",
-        //     role: "Daily Commuter",
-        //     rating: 5,
-        //     comment: "As a monthly renter, I appreciate the flexible plans and well-maintained vehicles. The Honda Civic has been reliable and fuel-efficient for my daily commute.",
-        //     avatar: "/images/avatar4.jpg",
-        //     carRented: "Honda Civic"
-        // }
     ];
 
     const stats = [

@@ -16,7 +16,7 @@ const MyBookings = () => {
 
 
     // useEffect(() => {
-    //    axios.get(`http://localhost:2005/myBookings?email=${user.email}`)
+    //    axios.get(`https://server-api-assign10.vercel.app/myBookings?email=${user.email}`)
     //    .then(data => {
     //     //   console.log(data);
     //     setBookings(data.data);
@@ -33,7 +33,7 @@ const MyBookings = () => {
     }, [user,axiosSecure]);
 
     // useEffect(() => {
-    //     fetch(`http://localhost:2005/myBookings?email=${user.email}`)
+    //     fetch(`https://server-api-assign10.vercel.app/myBookings?email=${user.email}`)
     //         .then(res => res.json())
     //         .then(data => {
     //             setBookings(data);
@@ -51,7 +51,7 @@ const MyBookings = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                // fetch(`http://localhost:2005/myBookings/${id}`, {
+                // fetch(`https://server-api-assign10.vercel.app/myBookings/${id}`, {
                 //     method: 'DELETE'
                 // })
                 //     .then(res => res.json())
@@ -69,7 +69,7 @@ const MyBookings = () => {
                             };
 
                             // status changed
-                            // fetch(`http://localhost:2005/carsBooking/${carId}`, {
+                            // fetch(`https://server-api-assign10.vercel.app/carsBooking/${carId}`, {
                             //     method: 'PATCH',
                             //     headers: {
                             //         'Content-Type': 'application/json',
@@ -90,47 +90,6 @@ const MyBookings = () => {
     };
 
     return (
-        // <div className="max-w-4xl mx-auto p-6">
-        //     <h2 className="text-2xl font-bold mb-6 text-center">Booking History</h2>
-        //     <div className="space-y-4">
-        //         {bookings.map((booking) => (
-        //             <div
-        //                 key={booking._id}
-        //                 className="flex items-center bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition"
-        //             >
-        //                 {/* Car Image */}
-        //                 <img
-        //                     src={booking.carImage}
-        //                     alt={booking.carName}
-        //                     className="w-30 h-30 rounded-md mr-4"
-        //                 />
-
-        //                 {/* Booking Details */}
-        //                 <div className="flex-1">
-        //                     <h3 className="text-lg font-semibold">{booking.carName}</h3>
-        //                     <p className="text-sm text-gray-600">
-        //                         Pickup: <span className="font-medium">{booking.pickupDate}</span>
-        //                     </p>
-        //                     <p className="text-sm text-gray-600">
-        //                         Return: <span className="font-medium">{booking.returnDate}</span>
-        //                     </p>
-        //                     <p className="text-sm text-gray-600">
-        //                         Booked on:{" "}
-        //                         <span className="font-medium">{booking.bookingDate}</span>
-        //                     </p>
-        //                 </div>
-
-        //                 {/* Delete Button */}
-        //                 <button
-        //                     onClick={() => handleDelete(booking._id,booking.carId)}
-        //                     className="ml-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
-        //                 >
-        //                     Delete
-        //                 </button>
-        //             </div>
-        //         ))}
-        //     </div>
-        // </div>
         <div className="min-h-screen bg-linear-to-br from-slate-50 to-blue-50/30 py-8">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header Section */}

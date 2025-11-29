@@ -16,7 +16,7 @@ export default function MyListings() {
 
     // Fetch cars added by the logged-in provider
     // useEffect(() => {
-    //     fetch(`http://localhost:2005/myCars?email=${user.email}`)
+    //     fetch(`https://server-api-assign10.vercel.app/myCars?email=${user.email}`)
     //         .then(res => res.json())
     //         .then(data => {
     //             setCars(data);
@@ -25,7 +25,7 @@ export default function MyListings() {
 
      useEffect(() => {
         if (user?.email) {
-            // fetch(`http://localhost:2005/myCars?email=${user.email}`, {
+            // fetch(`https://server-api-assign10.vercel.app/myCars?email=${user.email}`, {
             //     headers: {
             //         authorization: `Bearer ${user.accessToken}`
             //     }
@@ -63,7 +63,7 @@ export default function MyListings() {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                // fetch(`http://localhost:2005/cars/${id}`, {
+                // fetch(`https://server-api-assign10.vercel.app/cars/${id}`, {
                 //     method: "DELETE"
                 // })
                 //     .then(res => res.json())
@@ -121,7 +121,7 @@ export default function MyListings() {
             status: "Available" // always set to Available when updating
         };
 
-        // fetch(`http://localhost:2005/cars/${selectedCar._id}`, {
+        // fetch(`https://server-api-assign10.vercel.app/cars/${selectedCar._id}`, {
         //     method: "PATCH",
         //     headers: {
         //         "Content-Type": "application/json",
@@ -168,213 +168,6 @@ export default function MyListings() {
     };
 
     return (
-        // <div className="max-w-6xl mx-auto p-6">
-        //     <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">My Car Lists</h1>
-
-        //     <div className="overflow-x-auto bg-white shadow-md rounded-lg">
-        //         <table className="min-w-full border border-gray-200">
-        //             <thead className="bg-gray-100">
-        //                 <tr>
-        //                     <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">
-        //                         Car Name
-        //                     </th>
-        //                     <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">
-        //                         Category
-        //                     </th>
-        //                     <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">
-        //                         Rent Price
-        //                     </th>
-        //                     <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">
-        //                         Status
-        //                     </th>
-        //                     <th className="px-4 py-2 text-center text-sm font-semibold text-gray-700">
-        //                         Actions
-        //                     </th>
-        //                 </tr>
-        //             </thead>
-        //             <tbody>
-        //                 {cars.map(car => (
-        //                     <tr
-        //                         key={car?._id}
-        //                         className="border-t hover:bg-gray-50 transition"
-        //                     >
-        //                         <td className="px-4 py-2 text-sm text-gray-800">{car?.name}</td>
-        //                         <td className="px-4 py-2 text-sm text-gray-600">
-        //                             {car?.category}
-        //                         </td>
-        //                         <td className="px-4 py-2 text-sm text-gray-600">
-        //                             ${car?.price}
-        //                         </td>
-        //                         <td className="px-4 py-2 text-sm">
-        //                             <span
-        //                                 className={`px-2 py-1 rounded-full text-xs font-medium ${car?.status === "Available"
-        //                                     ? "bg-green-100 text-green-700"
-        //                                     : "bg-red-100 text-red-700"
-        //                                     }`}
-        //                             >
-        //                                 {car?.status}
-        //                             </span>
-        //                         </td>
-        //                         <td className="px-4 py-2 text-sm text-center space-x-2">
-        //                             <button
-        //                                 onClick={() => handleUpdateModalOpen(car)}
-        //                                 className="px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-        //                             >
-        //                                 Update
-        //                             </button>
-        //                             <button
-        //                                 onClick={() => handleDelete(car?._id)}
-        //                                 className="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600"
-        //                             >
-        //                                 Delete
-        //                             </button>
-        //                         </td>
-        //                     </tr>
-        //                 ))}
-        //                 {cars?.length === 0 && (
-        //                     <tr>
-        //                         <td
-        //                             colSpan="5"
-        //                             className="text-center text-gray-500 py-6 text-sm"
-        //                         >
-        //                             No cars found.
-        //                         </td>
-        //                     </tr>
-        //                 )}
-        //             </tbody>
-        //         </table>
-        //     </div>
-
-        //     {/* Single Modal outside the table */}
-        //     <dialog ref={updateModalRef} className="modal modal-bottom sm:modal-middle">
-        //         <div className="modal-box">
-        //             {selectedCar && (
-        //                 <form
-        //                     onSubmit={handleUpdate}
-        //                     className="max-w-lg mx-auto bg-white shadow-md rounded-lg p-6 space-y-4"
-        //                 >
-        //                     <h2 className="text-2xl font-bold text-gray-800 mb-4">Update Car Information</h2>
-
-        //                     <div>
-        //                         <label className="block text-sm font-medium text-gray-700 mb-1">
-        //                             Car Name (Editable)
-        //                         </label>
-        //                         <input
-        //                             type="text"
-        //                             name="name"
-        //                             defaultValue={selectedCar?.name}
-        //                             required
-        //                             className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-        //                         />
-        //                     </div>
-
-        //                     <div>
-        //                         <label className="block text-sm font-medium text-gray-700 mb-1">
-        //                             Description (Editable)
-        //                         </label>
-        //                         <textarea
-        //                             name="description"
-        //                             defaultValue={selectedCar?.description}
-        //                             required
-        //                             className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-        //                         />
-        //                     </div>
-
-        //                     <div>
-        //                         <label className="block text-sm font-medium text-gray-700 mb-1">
-        //                             Category (Editable)
-        //                         </label>
-        //                         <select
-        //                             name="category"
-        //                             defaultValue={selectedCar?.category}
-        //                             className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-        //                         >
-        //                             <option value="Sedan">Sedan</option>
-        //                             <option value="SUV">SUV</option>
-        //                             <option value="Hatchback">Hatchback</option>
-        //                             <option value="Luxury">Luxury</option>
-        //                             <option value="Electric">Electric</option>
-        //                         </select>
-        //                     </div>
-
-        //                     <div>
-        //                         <label className="block text-sm font-medium text-gray-700 mb-1">
-        //                             Rent Price for per day (Editable)
-        //                         </label>
-        //                         <input
-        //                             type="number"
-        //                             name="price"
-        //                             defaultValue={selectedCar?.price}
-        //                             required
-        //                             className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-        //                         />
-        //                     </div>
-
-        //                     <div>
-        //                         <label className="block text-sm font-medium text-gray-700 mb-1">
-        //                             Location (Editable)
-        //                         </label>
-        //                         <input
-        //                             type="text"
-        //                             name="location"
-        //                             defaultValue={selectedCar?.location}
-        //                             required
-        //                             className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-        //                         />
-        //                     </div>
-
-        //                     <div>
-        //                         <label className="block text-sm font-medium text-gray-700 mb-1">
-        //                             Hosted Image URL (Optional)
-        //                         </label>
-        //                         <input
-        //                             type="text"
-        //                             name="image"
-        //                             defaultValue={selectedCar?.image}
-        //                             className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-        //                         />
-        //                     </div>
-
-        //                     <div>
-        //                         <label className="block text-sm font-medium text-gray-700 mb-1">
-        //                             Provider Name (Not Editable)
-        //                         </label>
-        //                         <input
-        //                             type="text"
-        //                             value={user?.displayName}
-        //                             readOnly
-        //                             className="w-full border border-gray-300 rounded-md px-3 py-2 bg-gray-100 cursor-not-allowed"
-        //                         />
-        //                     </div>
-
-        //                     <div>
-        //                         <label className="block text-sm font-medium text-gray-700 mb-1">
-        //                             Provider Email (Not Editable)
-        //                         </label>
-        //                         <input
-        //                             type="email"
-        //                             value={user?.email}
-        //                             readOnly
-        //                             className="w-full border border-gray-300 rounded-md px-3 py-2 bg-gray-100 cursor-not-allowed"
-        //                         />
-        //                     </div>
-
-        //                     <button
-        //                         type="submit"
-        //                         className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-        //                     >
-        //                         Update Car
-        //                     </button>
-        //                 </form>
-        //             )}
-        //             <div className="modal-action">
-        //                 <button onClick={closeModal} className="btn">
-        //                     Cancel
-        //                 </button>
-        //             </div>
-        //         </div>
-        //     </dialog>
-        // </div>
         <div className=" bg-linear-to-br from-gray-50 to-blue-50 py-4 sm:py-8">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header Section */}

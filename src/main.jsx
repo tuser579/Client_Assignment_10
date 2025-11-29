@@ -24,7 +24,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => fetch('http://localhost:2005/newestCars'),
+        loader: () => fetch('https://server-api-assign10.vercel.app/newestCars'),
         Component: Home,
       },
       {
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/myListings',
-        loader: () => fetch('http://localhost:2005/newestCars'),
+        loader: () => fetch('https://server-api-assign10.vercel.app/newestCars'),
         element: <PrivateRoute><MyListings></MyListings></PrivateRoute>,
       },
       {
@@ -50,12 +50,12 @@ const router = createBrowserRouter([
       },
       {
         path: '/browseCars',
-        loader: () => fetch("http://localhost:2005/cars"),
+        loader: () => fetch("https://server-api-assign10.vercel.app/cars"),
         Component: BrowseCars,
       },
       {
         path: '/car/:id',
-        loader: ({params}) => fetch(`http://localhost:2005/cars/${params.id}`),
+        loader: ({params}) => fetch(`https://server-api-assign10.vercel.app/cars/${params.id}`),
         element: <PrivateRoute><CarDetails></CarDetails></PrivateRoute>,
       }
     ]

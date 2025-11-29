@@ -23,7 +23,7 @@ const HeroSlider = () => {
             id: 3,
             title: "Trusted by Thousands",
             description: "Join our community of satisfied customers who trust us for their transportation needs",
-            image: "/public/car-showroom-automotive-retail-new-cars-cars-driving-automotive-vehicle-storage_605423-50371.jpg",
+            image: "/car-showroom-automotive-retail-new-cars-cars-driving-automotive-vehicle-storage_605423-50371.jpg",
         }
     ];
 
