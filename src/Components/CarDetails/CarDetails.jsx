@@ -2,6 +2,7 @@ import React, { use, useState } from "react";
 import { useLoaderData } from "react-router";
 import Swal from 'sweetalert2';
 import { AuthContext } from "../contexts/AuthContext/AuthContext";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const CarDetails = () => {
 
@@ -9,6 +10,8 @@ const CarDetails = () => {
     const [carInfo,setCarInfo] = useState(car);
     const { user } = use(AuthContext);
     const [showModal, setShowModal] = useState(false);
+
+    const axiosSecure = useAxiosSecure();
 
     const [bookingData, setBookingData] = useState({
         pickupDate: "",
@@ -128,30 +131,32 @@ const CarDetails = () => {
                     };
 
                     // status changed
-                    fetch(`http://localhost:2005/carsBooking/${car._id}`, {
-                        method: 'PATCH',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(carData)
-                    })
-                        .then(res => res.json())
+                    // fetch(`http://localhost:2005/carsBooking/${car._id}`, {
+                    //     method: 'PATCH',
+                    //     headers: {
+                    //         'Content-Type': 'application/json',
+                    //     },
+                    //     body: JSON.stringify(carData)
+                    // })
+                    //     .then(res => res.json())
+                    axiosSecure.patch(`/carsBooking/${car._id}` , carData)
                         .then(data => {
-                            if (data.modifiedCount) {
+                            if (data.data.modifiedCount) {
                                 carInfo.status = "Unavailable";
                                 setCarInfo(carInfo);
                             }
                         });
 
                     // POST to backend
-                    fetch("http://localhost:2005/myBookings", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(bookingInfo),
-                    })
-                        .then(res => res.json())
+                    // fetch("http://localhost:2005/myBookings", {
+                    //     method: "POST",
+                    //     headers: { "Content-Type": "application/json" },
+                    //     body: JSON.stringify(bookingInfo),
+                    // })
+                    //     .then(res => res.json())
+                    axiosSecure.post(`/myBookings`, bookingInfo)
                         .then(data => {
-                            console.log("Booking saved:", data);
+                            console.log("Booking saved:", data.data);
 
                             Swal.fire({
                                 title: 'Booking Confirmed!',

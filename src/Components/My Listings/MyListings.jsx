@@ -2,6 +2,7 @@ import React, { use, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext/AuthContext";
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 export default function MyListings() {
     const { user } = use(AuthContext);
@@ -9,6 +10,9 @@ export default function MyListings() {
     const [selectedCar, setSelectedCar] = useState(null); // Track which car is being updated
     const updateModalRef = useRef(null);
     const navigate = useNavigate();
+
+    const axiosSecure = useAxiosSecure();
+    
 
     // Fetch cars added by the logged-in provider
     // useEffect(() => {
@@ -21,18 +25,19 @@ export default function MyListings() {
 
      useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:2005/myCars?email=${user.email}`, {
-                headers: {
-                    authorization: `Bearer ${user.accessToken}`
-                }
-            })
-                .then(res => res.json())
+            // fetch(`http://localhost:2005/myCars?email=${user.email}`, {
+            //     headers: {
+            //         authorization: `Bearer ${user.accessToken}`
+            //     }
+            // })
+            //     .then(res => res.json())
+            axiosSecure.get(`/myCars?email=${user.email}`)
                 .then(data => {
-                    console.log(data);
-                    setCars(data)
+                    // console.log(data);
+                    setCars(data.data)
                 })
         }
-    }, [user])
+    }, [user,axiosSecure])
 
     const handleDelete = (id) => {
         //  Block deletion if car is unavailable
@@ -58,12 +63,13 @@ export default function MyListings() {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:2005/cars/${id}`, {
-                    method: "DELETE"
-                })
-                    .then(res => res.json())
+                // fetch(`http://localhost:2005/cars/${id}`, {
+                //     method: "DELETE"
+                // })
+                //     .then(res => res.json())
+                axiosSecure.delete(`/cars/${id}`)
                     .then(data => {
-                        if (data.deletedCount) {
+                        if (data.data.deletedCount) {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your car has been deleted.",
@@ -115,16 +121,17 @@ export default function MyListings() {
             status: "Available" // always set to Available when updating
         };
 
-        fetch(`http://localhost:2005/cars/${selectedCar._id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(carData),
-        })
-            .then((res) => res.json())
+        // fetch(`http://localhost:2005/cars/${selectedCar._id}`, {
+        //     method: "PATCH",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(carData),
+        // })
+        //     .then((res) => res.json())
+        axiosSecure.patch(`/cars/${selectedCar._id}` , carData)
             .then((data) => {
-                if (data.modifiedCount) {
+                if (data.data.modifiedCount) {
                     Swal.fire({
                         title: "Updated!",
                         text: "Car information has been updated.",

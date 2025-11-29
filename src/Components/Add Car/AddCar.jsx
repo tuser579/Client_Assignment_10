@@ -2,11 +2,13 @@ import React, { use, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../contexts/AuthContext/AuthContext";
-import axios from "axios";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 
 const AddCar = () => {
     const { user } = use(AuthContext);
+    const axiosSecure = useAxiosSecure();
+    
 
     const [carData, setCarData] = useState({
         name: "",
@@ -36,9 +38,9 @@ const AddCar = () => {
         //     body: JSON.stringify(carData)
         // })
         //     .then(res => res.json())
-        axios.post("http://localhost:2005/cars", carData)
+        axiosSecure.post("http://localhost:2005/cars", carData)
             .then(data => {
-                console.log("after post", data);
+                console.log("after post", data.data);
 
                 toast.success("Car added successfully 🚗");
 

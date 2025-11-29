@@ -2,20 +2,35 @@ import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext/AuthContext";
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router";
-import axios from "axios";
+// import axios from "axios";
+// import useAxios from "../../../hooks/useAxiox";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MyBookings = () => {
     const [bookings, setBookings] = useState([]);
     const { user } = use(AuthContext);
     const navigate = useNavigate();
 
+    // const axiosInstance = useAxios();
+    const axiosSecure = useAxiosSecure();
+
+
+    // useEffect(() => {
+    //    axios.get(`http://localhost:2005/myBookings?email=${user.email}`)
+    //    .then(data => {
+    //     //   console.log(data);
+    //     setBookings(data.data);
+    //    })
+    // }, [user.email]);
+
     useEffect(() => {
-       axios.get(`http://localhost:2005/myBookings?email=${user.email}`)
+       axiosSecure.get(`/myBookings?email=${user.email}`)
+    //    axiosSecure.get(`/myBookings?email=a@gmail.com`)
        .then(data => {
         //   console.log(data);
         setBookings(data.data);
        })
-    }, [user.email]);
+    }, [user,axiosSecure]);
 
     // useEffect(() => {
     //     fetch(`http://localhost:2005/myBookings?email=${user.email}`)
@@ -36,12 +51,13 @@ const MyBookings = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:2005/myBookings/${id}`, {
-                    method: 'DELETE'
-                })
-                    .then(res => res.json())
+                // fetch(`http://localhost:2005/myBookings/${id}`, {
+                //     method: 'DELETE'
+                // })
+                //     .then(res => res.json())
+                axiosSecure.delete(`/myBookings/${id}`)
                     .then(data => {
-                        if (data.deletedCount) {
+                        if (data.data.deletedCount) {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your car has been deleted.",
@@ -53,16 +69,17 @@ const MyBookings = () => {
                             };
 
                             // status changed
-                            fetch(`http://localhost:2005/carsBooking/${carId}`, {
-                                method: 'PATCH',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify(carData)
-                            })
-                                .then(res => res.json())
+                            // fetch(`http://localhost:2005/carsBooking/${carId}`, {
+                            //     method: 'PATCH',
+                            //     headers: {
+                            //         'Content-Type': 'application/json',
+                            //     },
+                            //     body: JSON.stringify(carData)
+                            // })
+                            //     .then(res => res.json())
+                            axiosSecure.patch(`/carsBooking/${carId}` , carData)
                                 .then(data => {
-                                    if (data.modifiedCount) {
+                                    if (data.data.modifiedCount) {
                                         setBookings(bookings.filter((booking) => booking._id !== id));
                                     }
                                 });
