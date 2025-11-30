@@ -156,7 +156,7 @@ const CarDetails = () => {
                     //     .then(res => res.json())
                     axiosSecure.post(`/myBookings`, bookingInfo)
                         .then(data => {
-                            // console.log("Booking saved:", data.data);
+                            // console.log("Booking saved:", data.data)
 
                             Swal.fire({
                                 title: 'Booking Confirmed!',
@@ -180,7 +180,7 @@ const CarDetails = () => {
                             setShowModal(false);
                         })
                         .catch(err => {
-                            // console.error("Error saving booking:", err);
+                            // console.error("Error saving booking:", err)
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Save Failed',

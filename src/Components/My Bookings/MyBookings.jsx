@@ -21,7 +21,7 @@ const MyBookings = () => {
     //     //   console.log(data);
     //     setBookings(data.data);
     //    })
-    // }, [user.email]);
+    // }, [user.email])
 
     useEffect(() => {
        axiosSecure.get(`/myBookings?email=${user.email}`)
