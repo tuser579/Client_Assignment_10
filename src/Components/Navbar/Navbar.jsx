@@ -74,8 +74,8 @@ const Navbar = () => {
             <div className="navbar-end">
                 {user ?
                     <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
+                        <div tabIndex={0} role="button" className="w-12 btn btn-ghost btn-circle avatar">
+                            <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-full">
                                 <img
                                     alt="Tailwind CSS Navbar component"
                                     src={user?.photoURL} />
@@ -93,7 +93,7 @@ const Navbar = () => {
                     </div>
                     :
                     <div className="flex flex-row space-x-1 md:space-y-0 md:space-x-2 md:w-auto">
-                        <NavLink to='/login' className="border border-white text-white px-2 sm:px-4 sm:py-2 rounded flex items-center justify-center hover:bg-white hover:text-[#2c3e50] transition-all">
+                        <NavLink to='/login' className="border border-white text-white px-2 sm:px-4 sm:py-2 rounded flex items-center justify-center bg-green-600 hover:bg-white hover:text-[#2c3e50] transition-all">
                             <i className="fas fa-sign-in-alt mr-2"></i> Login
                         </NavLink>
                         <NavLink to='/register' className="bg-[#3498db] text-white px-2 sm:px-4 py-1 sm:py-2 rounded flex items-center justify-center hover:bg-blue-600 transition-all">
