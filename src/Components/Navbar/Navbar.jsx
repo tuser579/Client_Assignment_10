@@ -16,6 +16,7 @@ const Navbar = () => {
             })
     }
 
+    // for navbar link
     const links = <>
         <li>
             <NavLink to='/' className="flex items-center px-3 py-2 hover:rounded-sm hover:bg-white hover:bg-opacity-10 hover:text-[#3498db] transition-all">
