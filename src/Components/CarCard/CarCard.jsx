@@ -194,7 +194,7 @@ const CarCard = ({ cars }) => {
                                     <span className="text-sm">By {car.providerName}</span>
                                 </div>
                                 <Link to={`/car/${car['_id']}`}>
-                                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition duration-300 font-semibold">
+                                    <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300 font-semibold">
                                         View Details
                                     </button>
                                 </Link>
