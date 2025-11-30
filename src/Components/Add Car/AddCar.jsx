@@ -29,15 +29,6 @@ const AddCar = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // send data to the server
-        // fetch("https://server-api-assign10.vercel.app/cars", {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(carData)
-        // })
-        //     .then(res => res.json())
         axiosSecure.post("/cars", carData)
             .then(data => {
                 console.log("after post", data.data);
