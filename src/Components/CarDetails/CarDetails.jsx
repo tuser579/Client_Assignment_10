@@ -170,7 +170,7 @@ const CarDetails = () => {
                                 confirmButtonText: 'Great!'
                             });
 
-                            // Reset form and close modal
+                            // reset form and close modal
                             setBookingData({
                                 pickupDate: "",
                                 returnDate: "",
