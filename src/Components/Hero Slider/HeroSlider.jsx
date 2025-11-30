@@ -5,7 +5,7 @@ import { Typewriter } from "react-simple-typewriter";
 const HeroSlider = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    // Carousel slides data
+    // slider data
     const carouselSlides = [
         {
             id: 1,
@@ -31,9 +31,9 @@ const HeroSlider = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % carouselSlides.length);
-        }, 5000); // Change slide every 5 seconds
+        }, 5000); 
 
-        // Cleanup interval on component unmount
+        // cleanup interval on component unmount
         return () => clearInterval(interval);
     }, [carouselSlides.length]);
 
